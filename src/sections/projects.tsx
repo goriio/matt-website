@@ -136,31 +136,30 @@ export function Project({ project }: { project: Project }) {
                   <Image
                     src={project.slideshow[selectedSlide]}
                     alt={project.title}
-                    width={552}
-                    height={414}
+                    width={672}
+                    height={504}
                     className="w-full mb-4 object-cover rounded-[20px]"
                   />
                   <div className="flex items-center justify-center gap-2 md:gap-4">
                     {project.slideshow.map((slide, index) => {
                       return (
-                        <button
+                        <div
                           key={index}
                           onClick={() => setSelectedSlide(index)}
+                          className={cn(
+                            "relative w-16 md:w-[120px] h-16 md:h-[120px] rounded-2xl overflow-hidden border-[3px] border-transparent transition-all ease-in-out",
+                            selectedSlide === index
+                              ? "border-[#E08B22]"
+                              : "hover:border-[#818181]/16"
+                          )}
                         >
                           <Image
                             src={slide}
                             alt={`${project.title}-${index}`}
-                            width={120}
-                            height={120}
-                            quality={100}
-                            className={cn(
-                              "w-16 md:w-[120px] h-16 md:h-[120px] object-cover aspect-square rounded-2xl border-[3px] transition ease-in-out",
-                              selectedSlide === index
-                                ? "border-[#E08B22]"
-                                : "hover:border-[#818181]/16"
-                            )}
+                            className="object-cover"
+                            fill
                           />
-                        </button>
+                        </div>
                       );
                     })}
                   </div>
@@ -170,22 +169,12 @@ export function Project({ project }: { project: Project }) {
                     Full View
                   </h4>
 
-                  <div className="relative max-w-[672px] w-full">
-                    <Image
-                      src={project.fullView}
-                      alt={`${project.title} Full View`}
-                      className="object-contain"
-                      fill
-                    />
-                  </div>
-                  <div className="relative">
-                    <Image
-                      src={project.fullView}
-                      alt={`${project.title} Full View`}
-                      width={672}
-                      height={2128.78}
-                    />
-                  </div>
+                  <Image
+                    src={project.fullView}
+                    alt={`${project.title} Full View`}
+                    width={672}
+                    height={2128.78}
+                  />
                 </div>
               </div>
             </motion.div>
