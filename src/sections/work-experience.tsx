@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const workExperience = [
   {
@@ -24,14 +27,33 @@ const workExperience = [
 export function WorkExperience() {
   return (
     <section>
-      <h2 className="mb-4 text-[#08090A]/80 text-xl md:text-[25px] font-semibold">
+      <motion.h2
+        className="mb-4 text-[#08090A]/80 text-xl md:text-[25px] font-semibold"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px 0px" }}
+        transition={{ duration: 0.7 }}
+      >
         Work Experience
-      </h2>
+      </motion.h2>
       <div className="flex flex-col gap-4">
         {workExperience.map((experience) => (
-          <div
+          <motion.div
             key={experience.company}
             className="flex items-center justify-between gap-4"
+            initial={{
+              y: 20,
+              opacity: 0,
+            }}
+            whileInView={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                ease: "easeInOut",
+                duration: 0.7,
+              },
+            }}
+            viewport={{ once: true, margin: "-100px 0px" }}
           >
             <div className="flex items-center gap-4">
               <Image
@@ -49,8 +71,10 @@ export function WorkExperience() {
                 </p>
               </div>
             </div>
-            <p className="text-[#08090A]/80 text-sm text-right">{experience.date}</p>
-          </div>
+            <p className="text-[#08090A]/80 text-sm text-right">
+              {experience.date}
+            </p>
+          </motion.div>
         ))}
       </div>
     </section>

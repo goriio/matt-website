@@ -1,8 +1,26 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4 w-full px-[32px] py-[46px] bg-[linear-gradient(rgba(0,0,0,0.8)),url(/images/footer-background.png)] bg-cover bg-center rounded-2xl overflow-hidden">
+    <motion.footer
+      className="flex flex-col items-center gap-4 w-full px-[32px] py-[46px] bg-[linear-gradient(rgba(0,0,0,0.8)),url(/images/footer-background.png)] bg-cover bg-center rounded-2xl overflow-hidden"
+      initial={{
+        y: 20,
+        opacity: 0,
+      }}
+      whileInView={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          ease: "easeInOut",
+          duration: 0.7,
+        },
+      }}
+      viewport={{ once: true, margin: "-100px 0px" }}
+    >
       <Image src="/icons/icon.svg" alt="Icon" width={64} height={64} />
       <div className="text-center">
         <h2 className="font-semibold text-xl text-[#F8F8FA]">
@@ -20,6 +38,6 @@ export function Footer() {
       >
         Get in touch
       </a>
-    </footer>
+    </motion.footer>
   );
 }

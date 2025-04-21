@@ -192,18 +192,33 @@ export function Project({ project }: { project: Project }) {
           </div>
         )}
       </AnimatePresence>
-      <div
+      <motion.div
         onClick={handleOpen}
         key={project.title}
         className="flex flex-col gap-1"
+        initial={{
+          y: 100,
+          opacity: 0,
+        }}
+        whileInView={{
+          y: 0,
+          opacity: 1,
+          transition: {
+            ease: "easeInOut",
+            duration: 0.7,
+          },
+        }}
+        viewport={{ once: true, margin: "-100px 0px" }}
       >
-        <Image
-          src={project.slideshow[0]}
-          alt={project.title}
-          width={552}
-          height={414}
-          className="w-full rounded-2xl object-cover"
-        />
+        <div className="group rounded-2xl overflow-hidden">
+          <Image
+            src={project.slideshow[0]}
+            alt={project.title}
+            width={552}
+            height={414}
+            className="w-full object-cover transition ease-in-out duration-300 group-hover:scale-105"
+          />
+        </div>
         <div className="flex items-center justify-between">
           <h3 className="text-sm text-[#161616] font-medium">
             {project.title}
@@ -212,7 +227,7 @@ export function Project({ project }: { project: Project }) {
             {project.category} / {project.year}
           </p>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
@@ -220,9 +235,14 @@ export function Project({ project }: { project: Project }) {
 export function Projects() {
   return (
     <section>
-      <h2 className="mb-3 text-[#08090A]/80 text-xl md:text-[25px] font-semibold">
+      <motion.h2
+        className="mb-3 text-[#08090A]/80 text-xl md:text-[25px] font-semibold"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         Projects
-      </h2>
+      </motion.h2>
       <div className="flex flex-col gap-3">
         {projects.map((project) => {
           return <Project key={project.title} project={project} />;
