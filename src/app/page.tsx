@@ -1,4 +1,5 @@
 import { About } from "~/sections/about";
+import { Education } from "~/sections/education";
 import { Footer } from "~/sections/footer";
 import { Header } from "~/sections/header";
 import { Projects } from "~/sections/projects";
@@ -11,6 +12,7 @@ export default function Home() {
       <Header />
       <Projects />
       <WorkExperience />
+      <Education />
       <Skills />
       <About />
       <Footer />

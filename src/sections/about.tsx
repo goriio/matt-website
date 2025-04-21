@@ -15,7 +15,7 @@ export function About() {
         About
       </motion.h2>
       <motion.p
-        className="text-sm text-[#08090A]/80 leading-[120%]"
+        className="text-sm text-[#08090A]/80 leading-[1.20]"
         initial={{
           y: 20,
           opacity: 0,

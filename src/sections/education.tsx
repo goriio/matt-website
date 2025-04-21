@@ -5,26 +5,14 @@ import { motion } from "motion/react";
 
 const workExperience = [
   {
-    company: "Skyshare Labs",
-    position: "UI / UX / Web Designer",
-    date: "March 2024 - Present",
-    image: "/images/skyshare-labs.svg",
-  },
-  {
-    company: "Deer Designer",
-    position: "Graphic / Web Designer",
-    date: "September 2024 - March 2025",
-    image: "/images/deer-designer.svg",
-  },
-  {
-    company: "FastSend Mobile Solutions",
-    position: "UI / UX Designer",
-    date: "April 2023 - July 2023",
-    image: "/images/fastsend.svg",
+    school: "Polytechnic University of the Philippines",
+    course: "Bachelor of Science in Information Technology",
+    description: "2023 • Cum Laude",
+    image: "/images/polytechnic-university-of-the-philippines.svg",
   },
 ];
 
-export function WorkExperience() {
+export function Education() {
   return (
     <section>
       <motion.h2
@@ -34,12 +22,12 @@ export function WorkExperience() {
         viewport={{ once: true, margin: "-100px 0px" }}
         transition={{ duration: 0.7 }}
       >
-        Work Experience
+        Education
       </motion.h2>
       <div className="flex flex-col gap-4">
         {workExperience.map((experience) => (
           <motion.div
-            key={experience.company}
+            key={experience.school}
             className="flex items-center justify-between gap-4"
             initial={{
               y: 20,
@@ -58,21 +46,20 @@ export function WorkExperience() {
             <div className="flex items-center gap-4">
               <Image
                 src={experience.image}
-                alt={experience.company}
+                alt={experience.school}
                 width={48}
                 height={48}
+                className="shrink-0"
               />
               <div>
-                <h3 className="font-semibold text-[#161616] text-base leading-[1.20] md:text-xl">
-                  {experience.company}
+                <h3 className="max-w-[227px] w-full font-semibold text-[#161616] text-base leading-[1.20] md:text-xl">
+                  {experience.school}
                 </h3>
-                <p className="text-[#08090A]/80 text-sm">
-                  {experience.position}
-                </p>
+                <p className="text-[#08090A]/80 text-sm">{experience.course}</p>
               </div>
             </div>
             <p className="self-start text-[#08090A]/80 text-sm text-right">
-              {experience.date}
+              {experience.description}
             </p>
           </motion.div>
         ))}
