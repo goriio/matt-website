@@ -110,7 +110,7 @@ export function Project({ project }: { project: Project }) {
               exit={{ opacity: 0, translateY: "100%" }}
               transition={{ duration: 0.3 }}
               ref={containerRef}
-              className="relative z-[60] mx-auto my-10 h-fit max-w-[800px] rounded-4xl bg-white p-5 md:p-16 font-sans"
+              className="relative z-[60] mx-auto my-10 h-fit max-w-[800px] rounded-4xl bg-white p-5 md:p-16"
             >
               <button
                 onClick={handleClose}
@@ -126,7 +126,7 @@ export function Project({ project }: { project: Project }) {
               <div>
                 <div className="mb-8 md:mb-16">
                   <div className="mb-4">
-                    <h3 className="mb-2 text-2xl md:text-4xl text-[#161616] font-bold">
+                    <h3 className="mb-2 text-2xl md:text-4xl text-[#161616] font-semibold">
                       {project.title}
                     </h3>
                     <p className="text-[#08090A]/50 text-sm">
