@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 export function Footer() {
   return (
     <motion.footer
-      className="flex flex-col items-center gap-4 w-full px-[32px] py-[46px] bg-[linear-gradient(rgba(0,0,0,0.8)),url(/images/footer-background.png)] bg-cover bg-center rounded-2xl overflow-hidden"
+      className="relative flex flex-col items-center gap-4 w-full px-[32px] py-[46px] rounded-2xl overflow-hidden"
       initial={{
         y: 20,
         opacity: 0,
@@ -21,6 +21,13 @@ export function Footer() {
       }}
       viewport={{ once: true, margin: "-100px 0px" }}
     >
+      <Image
+        src="/images/footer-background.png"
+        alt="Footer Background"
+        className="object-cover object-center -z-10"
+        fill
+      />
+      <div className="absolute inset-0 bg-[rgba(0,0,0,0.8)] -z-10" />
       <Image src="/icons/icon.svg" alt="Icon" width={64} height={64} />
       <div className="text-center">
         <h2 className="font-semibold text-xl text-[#F8F8FA]">
