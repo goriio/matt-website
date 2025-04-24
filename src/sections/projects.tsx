@@ -100,15 +100,14 @@ export function Project({ project }: { project: Project }) {
           <div className="fixed inset-0 z-50 h-screen overflow-auto">
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 h-full w-full bg-black/80 backdrop-blur-lg"
+              animate={{ opacity: 1, transition: { duration: 0.6 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              className="fixed inset-0 h-full w-full bg-black/70 backdrop-blur-lg"
             />
             <motion.div
-              initial={{ opacity: 0, translateY: "100%" }}
-              animate={{ opacity: 1, translateY: 0 }}
-              exit={{ opacity: 0, translateY: "100%" }}
-              transition={{ duration: 0.3 }}
+              initial={{ translateY: "100vh" }}
+              animate={{ translateY: 0, transition: { duration: 0.6 } }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
               ref={containerRef}
               className="relative z-[60] mx-auto my-10 h-fit max-w-[800px] rounded-4xl bg-white p-5 md:p-16"
             >
