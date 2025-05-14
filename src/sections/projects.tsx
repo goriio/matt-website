@@ -231,7 +231,7 @@ export function Projects() {
       >
         Projects
       </motion.h2>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-8">
         {projects.map((project) => {
           return <Project key={project.title} project={project} />;
         })}
