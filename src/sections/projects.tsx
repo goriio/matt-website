@@ -8,15 +8,28 @@ import { cn } from "~/lib/utils";
 
 type Project = {
   title: string;
+  thumbnail: string;
   category: string;
   year: number;
-  slideshow: string[];
   fullView: string;
+  slideshow?: string[];
+  hasBorder?: boolean;
+  pdf?: string;
 };
 
 const projects = [
   {
+    title: "KPC Logistics Redesign",
+    thumbnail: "/images/kpc-thumbail.png",
+    category: "UI/UX",
+    year: 2025,
+    fullView: "/images/kpc-full-view.png",
+    hasBorder: true,
+    pdf: "/pdfs/KPC Logistics Case Study - Ostulano.pdf",
+  },
+  {
     title: "Western Landing Page",
+    thumbnail: "/images/western-landing-page.png",
     category: "Web Design",
     year: 2025,
     slideshow: [
@@ -29,6 +42,7 @@ const projects = [
   },
   {
     title: "Aeris Body Spray Landing Page",
+    thumbnail: "/images/aeris-body-spray-landing-page.png",
     category: "Web Design",
     year: 2025,
     slideshow: [
@@ -40,6 +54,7 @@ const projects = [
   },
   {
     title: "OSALON Landing Page",
+    thumbnail: "/images/osalon-landing-page.png",
     category: "Web Design",
     year: 2024,
     slideshow: [
@@ -51,6 +66,7 @@ const projects = [
   },
   {
     title: "Fireplace Landing Page",
+    thumbnail: "/images/fireplace-landing-page.png",
     category: "Web Design",
     year: 2024,
     slideshow: [
@@ -123,50 +139,67 @@ export function Project({ project }: { project: Project }) {
                 />
               </button>
               <div>
-                <div className="mb-8 md:mb-16">
-                  <div className="mb-4">
-                    <h3 className="mb-2 text-2xl md:text-4xl text-[#161616] font-semibold">
-                      {project.title}
-                    </h3>
-                    <p className="text-[#08090A]/50 text-sm">
-                      {project.category} / {project.year}
-                    </p>
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="mb-4">
+                      <h3 className="mb-2 text-2xl md:text-4xl text-[#161616] font-semibold">
+                        {project.title}
+                      </h3>
+                      <p className="text-[#08090A]/50 text-sm">
+                        {project.category} / {project.year}
+                      </p>
+                    </div>
+                    {project.pdf && (
+                      <a
+                        href={project.pdf}
+                        target="_blank"
+                        className="shrink-0 flex items-center p-4 h-[33px] text-sm leading-[120%] border border-[#000000]/32 rounded-lg"
+                      >
+                        Open as PDF
+                      </a>
+                    )}
                   </div>
-                  <Image
-                    src={project.slideshow[selectedSlide]}
-                    alt={project.title}
-                    width={672}
-                    height={504}
-                    className="w-full mb-4 object-cover rounded-[20px]"
-                  />
-                  <div className="flex items-center justify-center gap-2 md:gap-4">
-                    {project.slideshow.map((slide, index) => {
-                      return (
-                        <div
-                          key={index}
-                          onClick={() => setSelectedSlide(index)}
-                          className={cn(
-                            "relative w-16 md:w-[120px] h-16 md:h-[120px] rounded-2xl overflow-hidden border-[3px] border-transparent transition-all ease-in-out",
-                            selectedSlide === index
-                              ? "border-[#E08B22]"
-                              : "hover:border-[#818181]/16"
-                          )}
-                        >
-                          <Image
-                            src={slide}
-                            alt={`${project.title}-${index}`}
-                            className="object-cover"
-                            fill
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
+                  {project.slideshow && (
+                    <div className="mb-8 md:mb-16">
+                      <Image
+                        src={project.slideshow[selectedSlide]}
+                        alt={project.title}
+                        width={672}
+                        height={504}
+                        className="w-full mb-4 object-cover rounded-[20px]"
+                      />
+                      <div className="flex items-center justify-center gap-2 md:gap-4">
+                        {project.slideshow.map((slide, index) => {
+                          return (
+                            <div
+                              key={index}
+                              onClick={() => setSelectedSlide(index)}
+                              className={cn(
+                                "relative w-16 md:w-[120px] h-16 md:h-[120px] rounded-2xl overflow-hidden border-[3px] border-transparent transition-all ease-in-out",
+                                selectedSlide === index
+                                  ? "border-[#E08B22]"
+                                  : "hover:border-[#818181]/16"
+                              )}
+                            >
+                              <Image
+                                src={slide}
+                                alt={`${project.title}-${index}`}
+                                className="object-cover"
+                                fill
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <h4 className="mb-2 text-xl md:text-2xl text-[#161616] font-semibold">
-                    Full View
-                  </h4>
+                  {project.category === "Web Design" && (
+                    <h4 className="mb-2 text-xl md:text-2xl text-[#161616] font-semibold">
+                      Full View
+                    </h4>
+                  )}
 
                   <Image
                     src={project.fullView}
@@ -198,9 +231,14 @@ export function Project({ project }: { project: Project }) {
         }}
         viewport={{ once: true, margin: "-100px 0px" }}
       >
-        <div className="group rounded-2xl overflow-hidden">
+        <div
+          className={cn(
+            "group rounded-2xl overflow-hidden",
+            project.hasBorder && "border border-[#000000]/16"
+          )}
+        >
           <Image
-            src={project.slideshow[0]}
+            src={project.thumbnail}
             alt={project.title}
             width={552}
             height={414}
